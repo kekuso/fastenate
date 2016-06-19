@@ -1,20 +1,48 @@
+@import "sass/partials/_reset.scss";
+@import "sass/partials/_clearfix.scss";
+
 body {
-  display: flex;
-  flex-flow: row wrap;
-  //background-image: url("/assets/bg.jpg");
+  background-image: url("/assets/bg.jpg");
   h1 {
     background-color: #fff;
   }
 }
 
-#header {
-  //background-color: #fff;
+#mainPage {
 }
 
-.menuItems {
-  display: flex;
-  flex-flow: row nowrap;
-  justify-content: center;
+#header {
+  display:center;
+  background-color: white;
+}
+
+#headerBackground {
+  position: absolute;
+  box-sizing: border-box;
+  margin-left: 35%;
+  margin-top: 2%;
+}
+
+#logo {
+  display: center;
+  text-align: center;
+  margin-left: 45%;
+  box-sizing: border-box;
+}
+
+#menu {
+  display: inline-block;
+  display:center;
+  text-align: center;
+  margin: auto;
+  width: 100%;
   background-color: #222;
   color: #808080;
+}
+.menuItems {
+
+}
+
+.threads {
+
 }

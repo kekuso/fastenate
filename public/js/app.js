@@ -22,6 +22,7 @@ function display(response) {
   // Fastenate Structure
   var mainPage = document.getElementById("mainPage");
     var header = document.createElement("div");
+      var headerBackground = document.createElement("img");
       var logo = document.createElement("img");
       var plusButton = document.createElement("button");
     var menu = document.createElement("div");
@@ -35,13 +36,16 @@ function display(response) {
 
   //header
   header.setAttribute("id", "header");
-  header.backgroundColor = "#fff";
+  //header.backgroundColor = "#fff";
   mainPage.appendChild(header);
 
+  //headerBackground
+  headerBackground.setAttribute("id", "headerBackground");
+  headerBackground.src = "/assets/header_bg.svg";
+  header.appendChild(headerBackground);
   //logo
   logo.setAttribute("id", "logo");
   logo.src = "/assets/logo.svg";
-  logo.style.backgroundColor = "#fff";
   header.appendChild(logo);
 
   //menu
@@ -51,13 +55,13 @@ function display(response) {
   //random
   random.setAttribute("id", "random");
   random.className = "menuItems";
-  random.innerHTML = "RANDOM | ";
+  random.innerHTML = "RANDOM";
   menu.appendChild(random);
 
   //myBoards
   myBoards.setAttribute("id", "myBoards");
   myBoards.className = "menuItems";
-  myBoards.innerHTML = "MY BOARDS | ";
+  myBoards.innerHTML = "MY BOARDS";
   menu.appendChild(myBoards);
 
   //getTheApp
@@ -71,17 +75,19 @@ function display(response) {
   var title;
   var imageContainer;
   var threadImage;
+  var author;
   for (var i = 0; i < response.data.children.length; i++) {
     data = response.data.children[i].data;
     threadImage = document.createElement("img");
-    title = document.createElement("h2");
+    title = document.createElement("h1");
     imageContainer = document.createElement("div");
+    author = document.createElement("h3");
+
 
     threadImage.src = data.url;
     title.innerHTML = data.title;
-
     imageContainer.appendChild(threadImage);
-    threads.appendChild(threadImage);
+    threads.appendChild(imageContainer);
     threads.appendChild(title);
   }
 
