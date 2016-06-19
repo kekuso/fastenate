@@ -67,29 +67,31 @@ table {
 body {
   background-image: url("/assets/bg.jpg"); }
   body h1 {
-    background-color: #fff; }
+    font-size: 40px; }
 
-#header {
-  display: center;
-  background-color: white; }
+.header {
+  background: url("/assets/header_bg.svg") no-repeat center, url("/assets/logo.svg") no-repeat center;
+  background-color: #fff;
+  height: 60px; }
 
-#headerBackground {
-  position: absolute;
-  box-sizing: border-box;
-  margin-left: 35%;
-  margin-top: 2%; }
-
-#logo {
-  display: center;
-  text-align: center;
-  margin-left: 45%;
-  box-sizing: border-box; }
-
-#menu {
+.menu {
+  white-space: nowrap;
   display: inline-block;
-  display: center;
   text-align: center;
   margin: auto;
-  width: 100%;
+  width: 33%;
   background-color: #222;
   color: #808080; }
+
+.menuItems {
+  display: inline-block;
+  width: 100%; }
+
+.threads {
+  display: flex;
+  flex-flow: row wrap;
+  width: 90%;
+  justify-content: space-around;
+  background-color: white;
+  box-sizing: border-box;
+  border: 1px solid black; }
