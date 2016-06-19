@@ -1,2 +1,13 @@
-body h1 {
-  background-color: #fff; }
+body {
+  display: flex;
+  flex-flow: row wrap; }
+  body h1 {
+    background-color: #fff; }
+
+.menuItems {
+  display: flex;
+  flex-flow: row wrap;
+  flex: 1 1 33%;
+  /*justify-content: center;*/
+  background-color: #222;
+  color: #808080; }
