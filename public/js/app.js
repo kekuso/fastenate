@@ -16,37 +16,23 @@ $.ajax({
 
 });
 
+var bullet = '&#8226';
 function display(response) {
   // console.log("Sanity Check");
 
   // Fastenate Structure
   var mainPage = document.getElementById("mainPage");
     var header = document.createElement("div");
-      var headerBackground = document.createElement("img");
-      var logo = document.createElement("img");
       var plusButton = document.createElement("button");
-    var menu = document.createElement("div");
-      var random = document.createElement("div");
-      var myBoards = document.createElement("div");
-      var getTheApp = document.createElement("div");
+    var menu = document.createElement("ul");
+      var random = document.createElement("li");
+      var myBoards = document.createElement("li");
+      var getTheApp = document.createElement("li");
     var threads = document.createElement("div");
-
-  //mainPage
-  //mainPage.backgroundColor = '#fff';
 
   //header
   header.setAttribute("class", "header");
-  //header.backgroundColor = "#fff";
   mainPage.appendChild(header);
-
-  //headerBackground
-  // headerBackground.setAttribute("id", "headerBackground");
-  // headerBackground.src = "/assets/header_bg.svg";
-  //header.appendChild(headerBackground);
-  //logo
-  // logo.setAttribute("id", "logo");
-  // logo.src = "/assets/logo.svg";
-  //header.appendChild(logo);
 
   //menu
   menu.setAttribute("class", "menu");
@@ -55,13 +41,13 @@ function display(response) {
   //random
   random.setAttribute("class", "random");
   random.className = "menuItems";
-  random.innerHTML = "RANDOM";
+  random.innerHTML = "RANDOM " + bullet + " ";
   menu.appendChild(random);
 
   //myBoards
   myBoards.setAttribute("class", "myBoards");
   myBoards.className = "menuItems";
-  myBoards.innerHTML = "MY BOARDS";
+  myBoards.innerHTML = "MY BOARDS " + bullet + " ";
   menu.appendChild(myBoards);
 
   //getTheApp
@@ -71,13 +57,16 @@ function display(response) {
   menu.appendChild(getTheApp);
 
   //threads
-  threads.className = "threads";
+  threads.className = "threadContainer";
   var title;
   var imageContainer;
   var threadImage;
   var author;
+  var thread;
   for (var i = 0; i < response.data.children.length; i++) {
     data = response.data.children[i].data;
+    thread  = document.createElement("div");
+    thread.className = "threads";
     threadImage = document.createElement("img");
     title = document.createElement("h1");
     imageContainer = document.createElement("div");
@@ -89,11 +78,12 @@ function display(response) {
     threadImage.src = data.url;
     title.innerHTML = data.title;
 
+    threads.appendChild(thread);
     imageContainer.appendChild(threadImage);
-    //threads.appendChild(imageContainer);
-    threads.appendChild(title);
-    threads.appendChild(author);
-    threads.appendChild(createDate);
+    //thread.appendChild(imageContainer);
+    thread.appendChild(title);
+    thread.appendChild(author);
+    thread.appendChild(createDate);
   }
 
   mainPage.appendChild(threads);
