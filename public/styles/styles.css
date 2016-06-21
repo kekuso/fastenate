@@ -108,24 +108,24 @@ body > .mainPage {
       max-width: 800px; } }
   @media only screen and (min-width: 900px) {
     .threadContainer {
-      width: 80%;
+      width: 100%;
       max-width: 900px; } }
 
 .threads {
   background-color: white;
   margin: 10px;
   padding: 10px;
-  float: left;
+  display: inline-block;
   box-sizing: border-box;
   overflow: hidden;
   text-overflow: ellipsis; }
   @media only screen and (min-width: 600px) and (max-width: 899px) {
     .threads {
-      width: 275px;
+      width: 45%;
       height: 325px; } }
   @media only screen and (min-width: 900px) {
     .threads {
-      width: 325px;
+      width: 45%;
       height: 400px; } }
 
 .imageContainer {
