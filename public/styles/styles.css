@@ -65,10 +65,19 @@ table {
 
 /* close commented backslash hack */
 body {
+  height: 100%;
   background-image: url("/assets/bg.jpg");
   font-family: 'Lato', sans-serif; }
   body h1 {
     font-size: 25px; }
+
+.mainPage {
+  height: 100%;
+  padding-bottom: 3em; }
+
+body > .mainPage {
+  height: auto;
+  min-height: 100%; }
 
 .header {
   background: url("/assets/header_bg.svg") no-repeat center, url("/assets/logo.svg") no-repeat center;
@@ -92,13 +101,17 @@ body {
   letter-spacing: 1px; }
 
 .threadContainer {
-  width: 75%;
-  max-width: 740px;
   margin: 0 auto; }
+  @media only screen and (min-width: 600px) and (max-width: 899px) {
+    .threadContainer {
+      width: 100%;
+      max-width: 800px; } }
+  @media only screen and (min-width: 900px) {
+    .threadContainer {
+      width: 80%;
+      max-width: 900px; } }
 
 .threads {
-  width: 350px;
-  height: 400px;
   background-color: white;
   margin: 10px;
   padding: 10px;
@@ -106,6 +119,14 @@ body {
   box-sizing: border-box;
   overflow: hidden;
   text-overflow: ellipsis; }
+  @media only screen and (min-width: 600px) and (max-width: 899px) {
+    .threads {
+      width: 275px;
+      height: 325px; } }
+  @media only screen and (min-width: 900px) {
+    .threads {
+      width: 325px;
+      height: 400px; } }
 
 .imageContainer {
   width: 100%;
@@ -141,3 +162,20 @@ body {
   -webkit-line-clamp: 2;
   line-height: 20px;
   max-height: 80px; }
+
+@media only screen and (min-width: 900px) {
+  .footer {
+    clear: both;
+    position: relative;
+    z-index: 10;
+    height: 3em;
+    margin-top: -3em;
+    background-color: #3A3A3C;
+    text-align: center;
+    padding: 5px; } }
+
+.fbImage {
+  margin: 5px; }
+
+.instImage {
+  margin: 5px; }

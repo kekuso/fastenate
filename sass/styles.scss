@@ -12,12 +12,23 @@ $small: "only screen and (min-width: 200px) and (max-width: 599px)";
 $medium: "only screen and (min-width: 600px) and (max-width: 899px)";
 $large: "only screen and (min-width: 900px)";
 // Mixins
+@mixin small {
+  @media #{$small} {
+    @content;
+  }
+}
 @mixin medium {
   @media #{$medium} {
     @content;
   }
 }
+@mixin large {
+  @media #{$large} {
+    @content;
+  }
+}
 body {
+  height: 100%;
   background-image: url("/assets/bg.jpg");
   font-family: 'Lato', sans-serif;
   h1 {
@@ -25,6 +36,15 @@ body {
   }
 }
 
+.mainPage {
+  height: 100%;
+  padding-bottom: 3em;
+}
+
+body > .mainPage {
+  height: auto;
+  min-height: 100%;
+}
 .header {
   background: url("/assets/header_bg.svg") no-repeat center, url("/assets/logo.svg") no-repeat center;
   background-color: #fff;
@@ -50,14 +70,18 @@ body {
 }
 
 .threadContainer {
-  width: 75%;
-  max-width: 740px;
   margin: 0 auto;
+  @include medium {
+    width: 100%;
+    max-width: 800px;
+  }
+  @include large {
+    width: 80%;
+    max-width: 900px;
+  }
 }
 
 .threads {
-  width: 350px;
-  height: 400px;
   background-color: white;
   margin: 10px;
   padding: 10px;
@@ -65,6 +89,14 @@ body {
   box-sizing: border-box;
   overflow: hidden;
   text-overflow: ellipsis;
+  @include medium {
+    width: 275px;
+    height: 325px;
+  }
+  @include large {
+    width: 325px;
+    height: 400px;
+  }
 }
 
 .imageContainer {
@@ -105,4 +137,25 @@ body {
   -webkit-line-clamp: 2;
   line-height: 20px;
   max-height: 80px;
+}
+
+.footer {
+  @include large {
+    clear: both;
+    position: relative;
+    z-index: 10;
+    height: 3em;
+    margin-top: -3em;
+    background-color: $menuBG;
+    text-align: center;
+    padding: 5px;
+  }
+}
+
+.fbImage {
+  margin : 5px;
+}
+
+.instImage {
+  margin: 5px;
 }
