@@ -61,29 +61,49 @@ function display(response) {
   var title;
   var imageContainer;
   var threadImage;
+  var subtitleContainer;
   var author;
   var thread;
+  var viewCount;
+  var fillerText;
+
   for (var i = 0; i < response.data.children.length; i++) {
     data = response.data.children[i].data;
     thread  = document.createElement("div");
     thread.className = "threads";
     threadImage = document.createElement("img");
+    threadImage.className = "threadImage";
     title = document.createElement("h1");
+    title.className = "title";
     imageContainer = document.createElement("div");
-    author = document.createElement("h3");
-    createDate = document.createElement("div");
+    imageContainer.className = "imageContainer";
+    subtitleContainer = document.createElement("ul");
+    subtitleContainer.className = "subContainer";
+    author = document.createElement("li");
+    author.className = "author subtitle";
+    createDate = document.createElement("li");
+    createDate.className = "createDate subtitle";
+    viewCount = document.createElement("li");
+    viewCount.className = "score subtitle";
+    fillerText = document.createElement("div");
+    fillerText.className = "fillerText";
 
-    author.innerHTML = "author: " + data.author;
-    createDate.innerHTML = "created: " + getDate(data.created);
+    author.innerHTML = "by " + data.author + " " + bullet;
+    createDate.innerHTML = " created: " + getDate(data.created) + " " + bullet;
     threadImage.src = data.url;
     title.innerHTML = data.title;
+    viewCount.innerHTML = " " + data.score + " views";
+    fillerText.innerHTML = 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consectetur ullam porro laudantium quidem, non inventore culpa quibusdam odit tempore, neque laboriosam, possimus! Consequuntur numquam, ipsa, ipsam eveniet voluptas quia! Suscipit!';
 
     threads.appendChild(thread);
     imageContainer.appendChild(threadImage);
-    //thread.appendChild(imageContainer);
+    thread.appendChild(imageContainer);
     thread.appendChild(title);
-    thread.appendChild(author);
-    thread.appendChild(createDate);
+    subtitleContainer.appendChild(author);
+    subtitleContainer.appendChild(createDate);
+    subtitleContainer.appendChild(viewCount);
+    thread.appendChild(subtitleContainer);
+    thread.appendChild(fillerText);
   }
 
   mainPage.appendChild(threads);
