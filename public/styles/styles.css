@@ -64,6 +64,9 @@ table {
   display: block; }
 
 /* close commented backslash hack */
+html {
+  height: 100%; }
+
 body {
   height: 100%;
   background-image: url("/assets/bg.jpg");
@@ -109,7 +112,8 @@ body > .mainPage {
   @media only screen and (min-width: 900px) {
     .threadContainer {
       width: 100%;
-      max-width: 900px; } }
+      max-width: 900px;
+      padding-bottom: 3em; } }
 
 .threads {
   background-color: white;
@@ -164,7 +168,7 @@ body > .mainPage {
   max-height: 80px; }
 
 @media only screen and (min-width: 900px) {
-  .footer {
+  #footer {
     clear: both;
     position: relative;
     z-index: 10;
@@ -175,7 +179,24 @@ body > .mainPage {
     padding: 5px; } }
 
 .fbImage {
+  display: none;
   margin: 5px; }
+  @media only screen and (min-width: 200px) and (max-width: 599px) {
+    .fbImage {
+      display: none; } }
+  @media only screen and (min-width: 600px) and (max-width: 899px) {
+    .fbImage {
+      display: none; } }
+  @media only screen and (min-width: 900px) {
+    .fbImage {
+      display: inline-block; } }
 
 .instImage {
+  display: none;
   margin: 5px; }
+  @media only screen and (min-width: 600px) and (max-width: 899px) {
+    .instImage {
+      display: none; } }
+  @media only screen and (min-width: 900px) {
+    .instImage {
+      display: inline-block; } }

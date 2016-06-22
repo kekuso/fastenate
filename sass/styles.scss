@@ -27,6 +27,10 @@ $large: "only screen and (min-width: 900px)";
     @content;
   }
 }
+
+html {
+  height: 100%;
+}
 body {
   height: 100%;
   background-image: url("/assets/bg.jpg");
@@ -78,6 +82,7 @@ body > .mainPage {
   @include large {
     width: 100%;
     max-width: 900px;
+    padding-bottom: 3em;
   }
 }
 
@@ -139,7 +144,7 @@ body > .mainPage {
   max-height: 80px;
 }
 
-.footer {
+#footer {
   @include large {
     clear: both;
     position: relative;
@@ -153,9 +158,26 @@ body > .mainPage {
 }
 
 .fbImage {
+  display: none;
+  @include small {
+    display: none;
+  }
+  @include medium {
+    display: none;
+  }
+  @include large {
+    display:inline-block;
+  }
   margin : 5px;
 }
 
 .instImage {
-  margin: 5px;
+  display: none;
+  @include medium {
+    display: none;
+  }
+  @include large {
+    display:inline-block;
+  }
+  margin : 5px;
 }

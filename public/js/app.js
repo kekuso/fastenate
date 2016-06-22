@@ -29,7 +29,7 @@ function display(response) {
       var myBoards = document.createElement("li");
       var getTheApp = document.createElement("li");
     var threads = document.createElement("div");
-    var footer = document.createElement("div");
+    var footer = document.getElementById("footer");
   //header
   header.setAttribute("class", "header");
   mainPage.appendChild(header);
@@ -108,14 +108,12 @@ function display(response) {
   }
 
   // footer
-  footer.className = "footer";
   var facebookImage = document.createElement("img");
   facebookImage.src = "/assets/facebook_grey.svg";
   facebookImage.className = "fbImage";
   var instagramImage = document.createElement("img");
   instagramImage.src = "/assets/instagram_grey.svg";
   instagramImage.className = "instImage";
-  mainPage.appendChild(footer);
   footer.appendChild(facebookImage);
   footer.appendChild(instagramImage);
 }
