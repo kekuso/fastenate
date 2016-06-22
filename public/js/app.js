@@ -1,3 +1,4 @@
+// Load my_boards on page load
 $.ajax({
   method: 'GET',
   url: '/api/my_boards.json',
@@ -13,13 +14,29 @@ $.ajax({
 })
 .always(function() {
   //Always update the UI with status
-
 });
 
-var bullet = '&#8226';
-function display(response) {
-  // console.log("Sanity Check");
+function loadPage (page) {
+  $.ajax({
+    method: 'GET',
+    url: '/api/' + page,
+    dataType: 'json'
+  })
+  .done(function(data) {
+    //handle successful response
+    display(data);
+  })
+  .fail(function() {
+    //Handle errors
+    console.log("Unable to connect.");
+  })
+  .always(function() {
+    //Always update the UI with status
+  });
+}
 
+function display(response) {
+  var bullet = '&#8226';
   // Fastenate Structure
   var mainPage = document.getElementById("mainPage");
     var header = document.createElement("div");
@@ -42,18 +59,33 @@ function display(response) {
   random.setAttribute("class", "random");
   random.className = "menuItems";
   random.innerHTML = "RANDOM " + bullet + " ";
+  random.onclick = function () {
+    mainPage.innerHTML = "";
+    footer.innerHTML = "";
+    loadPage('random.json');
+  };
   menu.appendChild(random);
 
   //myBoards
   myBoards.setAttribute("class", "myBoards");
   myBoards.className = "menuItems";
   myBoards.innerHTML = "MY BOARDS " + bullet + " ";
+  myBoards.onclick = function () {
+    mainPage.innerHTML = "";
+    footer.innerHTML = "";
+    loadPage('my_boards.json');
+  };
   menu.appendChild(myBoards);
 
   //getTheApp
   getTheApp.setAttribute("class", "getTheApp");
   getTheApp.className = "menuItems";
   getTheApp.innerHTML = "GET THE APP";
+  getTheApp.onclick = function () {
+    mainPage.innerHTML = "";
+    footer.innerHTML = "";
+    loadPage('get_the_app.json');
+  };
   menu.appendChild(getTheApp);
 
   //threadContainer
@@ -67,6 +99,7 @@ function display(response) {
   var thread;
   var viewCount;
   var fillerText;
+  var currDate = Date.now();
 
   for (var i = 0; i < response.data.children.length; i++) {
     data = response.data.children[i].data;
@@ -89,8 +122,8 @@ function display(response) {
     fillerText = document.createElement("div");
     fillerText.className = "fillerText";
 
-    author.innerHTML = "by " + data.author + " " + bullet;
-    createDate.innerHTML = " created: " + getDate(data.created) + " " + bullet;
+    author.innerHTML = "by " + data.author;
+    createDate.innerHTML = timeDifference(currDate, data.created * 1000);
     threadImage.src = data.url;
     title.innerHTML = data.title;
     viewCount.innerHTML = " " + data.score + " views";
@@ -118,30 +151,42 @@ function display(response) {
   footer.appendChild(instagramImage);
 }
 
-function getDate(timestamp) {
-  var date = new Date(timestamp * 1000);
-  var months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
-  var year = date.getFullYear();
-  var month = months[date.getMonth()];
-  var day = date.getDate();
-  var hour = date.getHours();
-  var min = date.getMinutes();
-  var time;
+function timeDifference(current, previous) {
 
-  if(min < 10) {
-    min = '0' + min.toString();
-  }
-  if(hour > 12) {
-    if(hour < 13) {
-      hour = 12;
+    var msPerMinute = 60 * 1000;
+    var msPerHour = msPerMinute * 60;
+    var msPerDay = msPerHour * 24;
+    var msPerMonth = msPerDay * 30;
+    var msPerYear = msPerDay * 365;
+
+    var elapsed = current - previous;
+
+    if (elapsed < msPerMinute) {
+         return Math.round(elapsed/1000) + ' second(s) ago';
     }
+
+    else if (elapsed < msPerHour) {
+         return Math.round(elapsed/msPerMinute) + ' minute(s) ago';
+    }
+
+    else if (elapsed < msPerDay ) {
+         return Math.round(elapsed/msPerHour ) + ' hour(s) ago';
+    }
+
+    else if (elapsed < msPerMonth) {
+        return Math.round(elapsed/msPerDay) + ' day(s) ago';
+    }
+
+    else if (elapsed < msPerYear) {
+        return Math.round(elapsed/msPerMonth) + ' month(s) ago';
+    }
+
     else {
-      hour = hour - 12;
+      if(Math.round(elapsed/msPerYear) === 1) {
+        return '1 year ago';
+      }
+      else {
+        return Math.round(elapsed/msPerYear ) + ' years ago';
+      }
     }
-    time = day + ' ' + month + ' ' + year + ' ' + hour + ':' + min + 'PM (HST)';
-  }
-  else {
-    time = day + ' ' + month + ' ' + year + ' ' + hour + ':' + min + 'AM (HST)';
-  }
-  return time;
 }

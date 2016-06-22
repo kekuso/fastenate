@@ -1,3 +1,4 @@
+@charset "UTF-8";
 /* http://meyerweb.com/eric/tools/css/reset/ 
    v2.0 | 20110126
    License: none (public domain)
@@ -96,6 +97,7 @@ body > .mainPage {
   box-sizing: border-box; }
 
 .menuItems {
+  cursor: pointer;
   display: inline;
   width: 100%;
   margin-top: 20px;
@@ -148,15 +150,26 @@ body > .mainPage {
   width: 100%;
   text-align: left;
   margin-top: 10px;
+  margin-bottom: 5px;
   overflow: hidden;
   text-overflow: ellipsis;
   -webkit-line-clamp: 2;
   line-height: 25px;
   max-height: 50px; }
 
+.subContainer {
+  margin-right: 20px; }
+
 .subtitle {
-  display: inline;
+  display: inline-block;
+  margin-right: 5px;
   color: #97999C; }
+
+.createDate:before {
+  content: "• "; }
+
+.score:before {
+  content: "• "; }
 
 .fillerText {
   margin-top: 10px;
